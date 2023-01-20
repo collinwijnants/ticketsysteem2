@@ -11,7 +11,11 @@
                 <p class="card-text"><b id="eventinfo">Location:</b>{{$event->location}}</p>
                 <p class="card-text"><b id="eventinfo">Preorder prijs:</b>{{$event->preorder_price}}</p>
                 <div class="form-button">
-                    <a href="checkout" class="btn">Bestel Tickets!</a>
+                    <form action="{{ Route('display_tickets') }}" method="POST">
+                        @csrf
+                        <input type="hidden" id="event" name="event" value="{{$event->id}}">
+                        <button type="submit" class="btn">Bestel tickets!</button>
+                    </form>
                     @if (Auth::user())
                     @if (Auth::user()->is_admin)
                 
